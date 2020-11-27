@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title></title>
+
+<script>
+function doFV()
+{
+    let principal = parseFloat(document.getElementById("principal").value);
+    let annualRate = parseFloat(document.getElementById("annualRate").value);
+    let years = parseFloat(document.getElementById("years").value);
+    let periodsPerYear = parseFloat(document.getElementById("periodsPerYear").value);
+    let FV = computeFutureValue(principal, annualRate, years, periodsPerYear);
+    document.getElementById("output").innerHTML = FV
+}
+function computeFutureValue(principal, annualRate, years, periodsPerYear)
+//f = a (1 + r)^n
+/*f is the future value 
+  a is the investment amount sometimes called the principal
+  r is the growth rate per period
+  n is the total number of periods throughout the life of the investment
+ */ 
+{
+
+let futurValue =  Math.round(principal * ((1 + (annualRate/periodsPerYear)) ** (years * periodsPerYear))*100)/100;
+return futurValue;
+}
+</script>
+</head>
+
+<body>
+<h2>Investment Calculator</h2>
+<!-- I got the table from w3 school and customized it --> 
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Input</th>
+    </tr>
+    <tr>
+        <td>Ammount Invested(principal)</td>
+        <td><input type="text" id="principal"><br></td>
+    </tr>
+    <tr>
+        <td>Annual Rate</td>
+        <td><input type="text" id="annualRate"><br></td>
+    </tr>
+    <tr>    
+        <td>Number of years</td>
+        <td><input type="text" id="years"><br></td>
+    </tr>
+    <tr>
+        <td>Period per year</td>
+        <td><input type="text" id="periodsPerYear"><br></td>
+    </tr>
+    <tr>
+    <td><button type="button" onclick="doFV()">Compute furture value</button></td>
+    <td><div id="output"></div></td>
+    </tr>
+</table>
+</body>
+
+</html>
